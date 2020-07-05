@@ -42,6 +42,7 @@ def deconv_block(inp):
     out = InstanceNormalization()(out)
     out = ReLU()(out)
     out = Conv2D(3, kernel_size=(7, 7), strides=(1, 1), padding="same", kernel_initializer=kernel_init)(out)
+    out = InstanceNormalization()(out)
     out = Activation("tanh")(out)
     return out
 
@@ -87,7 +88,7 @@ def define_discriminator(inp_shape, summary=False):
 
 
 if __name__ == "__main__":
-    g = define_generator((256, 256, 3), 6, summary=True)
+    g = define_generator((256, 256, 3), 9, summary=True)
     print("\n\n\n\n")
     d = define_discriminator((256, 256, 3), summary=True)
 
